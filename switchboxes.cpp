@@ -1,14 +1,11 @@
-#include "footswitch.hpp"
+#include "switchboxes.hpp"
 
-FootSwitch::FootSwitch(uint8_t pin) {
-
-  this->mPin=pin;
+SwitchBox::SwitchBox() {
   this->mCurrentSwitchState = false;
   this->mNewPressOccured = false;
-  pinMode(pin, INPUT_PULLUP);
 }
 
-bool FootSwitch::update(void) {
+bool SwitchBox::update(void) {
   // read the state of the pin into a local variable
   bool reading = readSwitchState();
 
@@ -34,7 +31,7 @@ bool FootSwitch::update(void) {
   return mNewPressOccured;
 }
 
-void FootSwitch::updateInternalStates(bool updatedSwitchState) {
+void SwitchBox::updateInternalStates(bool updatedSwitchState) {
   if(mPressCounter == 1 && millis() - mReleaseTimePoint > mDoublePressGap) {
     // too much time has passed since last button press -> double press won't be generated -> reset counter
     mPressCounter = 0;
@@ -75,26 +72,31 @@ void FootSwitch::updateInternalStates(bool updatedSwitchState) {
   }
 }
 
-String FootSwitch::getEvent() {
+String SwitchBox::getEvent() {
   mNewPressOccured = false;
   return mEvent;
 }
 
-DigitalFootSwitch::DigitalFootSwitch(uint8_t pin): FootSwitch(pin) {
-  // nothing to do here
+DigitalSwitchBox::DigitalSwitchBox(uint8_t switch1Pin, uint8_t switch2Pin): SwitchBox() {
+  this->mSwitchPins[0] = switch1Pin;
+  this->mSwitchPins[1] = switch2Pin;
+  pinMode(this->mSwitchPins[0], INPUT_PULLUP);
+  pinMode(this->mSwitchPins[1], INPUT_PULLUP);
 }
 
-bool DigitalFootSwitch::readSwitchState() {
-  return digitalRead(mPin);
+bool DigitalSwitchBox::readSwitchState() {
+  return digitalRead(mSwitchPins[0]);
 }
 
-AnalogFootSwitch::AnalogFootSwitch(uint8_t pin, int minPinValue, int maxPinValue): FootSwitch(pin) {
+AnalogSwitchBox::AnalogSwitchBox(uint8_t inputPin, int minPinValue, int maxPinValue): SwitchBox() {
   this->mMinPinValue = minPinValue;
   this->mMaxPinValue = maxPinValue;
+  this->mInputPin = inputPin;
+  pinMode(this->mInputPin, INPUT_PULLUP);
 }
 
-bool AnalogFootSwitch::readSwitchState() {
-  int pinValue = analogRead(mPin);
+bool AnalogSwitchBox::readSwitchState() {
+  int pinValue = analogRead(mInputPin);
   //Serial.print(pinValue);
   //Serial.print("\n");
   return pinValue >= mMinPinValue && pinValue <= mMaxPinValue;

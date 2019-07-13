@@ -4,13 +4,13 @@
 
 #include "Arduino.h"
 
-class FootSwitch {
+class SwitchBox {
   public:
-    FootSwitch(uint8_t pin);
+    SwitchBox();
     bool update(void);
     String getEvent();
   protected:
-    uint8_t mPin;
+    static const uint8_t mSwitchCount = 2;
     unsigned long mLastDebounceTime;
     static const uint8_t mDebounceDelay = 10;
     void updateInternalStates(bool updatedSwitchState);
@@ -27,17 +27,19 @@ class FootSwitch {
     virtual bool readSwitchState() = 0;
 };
 
-class DigitalFootSwitch: public FootSwitch {
+class DigitalSwitchBox: public SwitchBox {
   public:
-    DigitalFootSwitch(uint8_t pin);
+    DigitalSwitchBox(uint8_t switch1Pin, uint8_t switch2Pin);
   private:
+    uint8_t mSwitchPins[mSwitchCount];
     bool readSwitchState();
 };
 
-class AnalogFootSwitch: public FootSwitch {
+class AnalogSwitchBox: public SwitchBox {
   public:
-    AnalogFootSwitch(uint8_t pin, int minPinValue, int maxPinValue);
+    AnalogSwitchBox(uint8_t inputPin, int minPinValue, int maxPinValue);
   private:
+    int mInputPin;
     int mMinPinValue;
     int mMaxPinValue;
     bool readSwitchState();
