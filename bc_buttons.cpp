@@ -1,4 +1,4 @@
-#include "bc_button.hpp"
+#include "bc_buttons.hpp"
 
 BcButton::BcButton(uint8_t pin) {
 

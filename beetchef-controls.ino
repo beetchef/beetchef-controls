@@ -1,4 +1,4 @@
-#include "bc_button.hpp"
+#include "bc_buttons.hpp"
 
 const uint8_t DIGITAL_PIN = 2;
 
