@@ -1,17 +1,17 @@
-#include "bc_buttons.hpp"
+#include "footswitch.hpp"
 
 const uint8_t DIGITAL_PIN = 2;
 
-//BcButton buttons[4];/* = {
-//  BcButton(2)  
+//FootSwitch buttons[4];/* = {
+//  FootSwitch(2)  
 //};*/
-BcButton *button1;
+FootSwitch *button1;
 
 void setup() {
   Serial.begin(9600);
-  //buttons[0] = new BcButton(2);
+  //buttons[0] = new FootSwitch(2);
 
-  button1 = new BcButton(DIGITAL_PIN);
+  button1 = new DigitalFootSwitch(DIGITAL_PIN);
 }
 
 void loop() {

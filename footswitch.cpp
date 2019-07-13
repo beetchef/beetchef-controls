@@ -1,23 +1,23 @@
-#include "bc_buttons.hpp"
+#include "footswitch.hpp"
 
-BcButton::BcButton(uint8_t pin) {
+FootSwitch::FootSwitch(uint8_t pin) {
 
   mPin=pin;
-  mCurrentPinState = false;
+  mCurrentSwitchState = false;
   mNewPressOccured = false;
   pinMode(pin, INPUT_PULLUP);
 }
 
-bool BcButton::update(void) {
+bool FootSwitch::update(void) {
   // read the state of the pin into a local variable
-  bool reading = digitalRead(mPin);
+  bool reading = readSwitchState();
 
   // check to see if you just pressed the button
   // (i.e. the input went from LOW to HIGH),  and you've waited
   // long enough since the last press to ignore any noise:
   
   // If the switch changed, due to noise or pressing:
-  if (reading != (mLastPinState)) { 
+  if (reading != (mLastSwitchState)) { 
     // reset the debouncing timer
     mLastDebounceTime = millis();
   }
@@ -25,24 +25,24 @@ bool BcButton::update(void) {
   if((millis() - mLastDebounceTime) > mDebounceDelay) {
     // whatever the reading is at, it's been there for longer
     // than the debounce delay, so take it as the actual current state:
-    updateButtonState(reading);
+    updateInternalStates(reading);
   }
 
   // save the reading.  Next time through the loop,
   // it'll be the lastButtonState:
-  mLastPinState = reading;
+  mLastSwitchState = reading;
   return mNewPressOccured;
 }
 
-void BcButton::updateButtonState(bool updatedPinState) {
+void FootSwitch::updateInternalStates(bool updatedSwitchState) {
   if(mPressCounter == 1 && millis() - mReleaseTimePoint > mDoublePressGap) {
     // too much time has passed since last button press -> double press won't be generated -> reset counter
     mPressCounter = 0;
   }
-  if(updatedPinState != mCurrentPinState) {
+  if(updatedSwitchState != mCurrentSwitchState) {
     // button state changed
-    mCurrentPinState = updatedPinState;
-    if(updatedPinState == HIGH) {
+    mCurrentSwitchState = updatedSwitchState;
+    if(updatedSwitchState == HIGH) {
       // button pressed
       if(mPressCounter == 0) {
         mPressTimePoint = millis();
@@ -66,7 +66,7 @@ void BcButton::updateButtonState(bool updatedPinState) {
     }
   } else {
     //button state remains
-    if(updatedPinState == HIGH & mPressTimePoint != -1 & millis() - mPressTimePoint >= mLongPressSpan) {
+    if(updatedSwitchState == HIGH & mPressTimePoint != -1 & millis() - mPressTimePoint >= mLongPressSpan) {
       //button is pressed long enough to generate long press event
       mNewPressOccured = true;
       mEvent = LONG_PRESS;
@@ -75,7 +75,16 @@ void BcButton::updateButtonState(bool updatedPinState) {
   }
 }
 
-String BcButton::getEvent() {
+String FootSwitch::getEvent() {
   mNewPressOccured = false;
   return mEvent;
+}
+
+DigitalFootSwitch::DigitalFootSwitch(uint8_t pin): FootSwitch(pin) {
+    
+}
+
+bool DigitalFootSwitch::readSwitchState() {
+  return digitalRead(mPin);
+  
 }

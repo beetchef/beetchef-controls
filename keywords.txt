@@ -7,13 +7,15 @@
 #######################################
 
 BcButton	KEYWORD1
+BcDigitalButton KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
 
 update			KEYWORD2
-getCurrentPinState	KEYWORD2
+getEvent		KEYWORD2
+
 
 #######################################
 # Constants (LITERAL1)
@@ -24,5 +26,5 @@ getCurrentPinState	KEYWORD2
 #LONG_PRESS	LITERAL1
 
 #CURRENT	LITERAL1
-#LAST	LITERAL1
+#LAST		LITERAL1
 #NEW_PRESS	LITERAL1
