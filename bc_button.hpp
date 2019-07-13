@@ -8,7 +8,7 @@ class BcButton {
   public:
     BcButton(uint8_t pin);
     bool update(void);
-    bool getCurrentPinState();
+    String getEvent();
   private:
     uint8_t mPin;
     uint8_t mPressCounter;

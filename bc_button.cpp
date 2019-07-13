@@ -75,7 +75,7 @@ void BcButton::updateButtonState(bool updatedPinState) {
   }
 }
 
-bool BcButton::getCurrentPinState() {
+String BcButton::getEvent() {
   mNewPressOccured = false;
-  return mCurrentPinState;
+  return mEvent;
 }
