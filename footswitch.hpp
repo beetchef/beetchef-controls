@@ -33,3 +33,12 @@ class DigitalFootSwitch: public FootSwitch {
   private:
     bool readSwitchState();
 };
+
+class AnalogFootSwitch: public FootSwitch {
+  public:
+    AnalogFootSwitch(uint8_t pin, int minPinValue, int maxPinValue);
+  private:
+    int mMinPinValue;
+    int mMaxPinValue;
+    bool readSwitchState();
+};

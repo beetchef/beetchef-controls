@@ -2,9 +2,9 @@
 
 FootSwitch::FootSwitch(uint8_t pin) {
 
-  mPin=pin;
-  mCurrentSwitchState = false;
-  mNewPressOccured = false;
+  this->mPin=pin;
+  this->mCurrentSwitchState = false;
+  this->mNewPressOccured = false;
   pinMode(pin, INPUT_PULLUP);
 }
 
@@ -17,7 +17,7 @@ bool FootSwitch::update(void) {
   // long enough since the last press to ignore any noise:
   
   // If the switch changed, due to noise or pressing:
-  if (reading != (mLastSwitchState)) { 
+  if (reading != (mLastSwitchState)) {
     // reset the debouncing timer
     mLastDebounceTime = millis();
   }
@@ -81,10 +81,21 @@ String FootSwitch::getEvent() {
 }
 
 DigitalFootSwitch::DigitalFootSwitch(uint8_t pin): FootSwitch(pin) {
-    
+  // nothing to do here
 }
 
 bool DigitalFootSwitch::readSwitchState() {
   return digitalRead(mPin);
-  
+}
+
+AnalogFootSwitch::AnalogFootSwitch(uint8_t pin, int minPinValue, int maxPinValue): FootSwitch(pin) {
+  this->mMinPinValue = minPinValue;
+  this->mMaxPinValue = maxPinValue;
+}
+
+bool AnalogFootSwitch::readSwitchState() {
+  int pinValue = analogRead(mPin);
+  //Serial.print(pinValue);
+  //Serial.print("\n");
+  return pinValue >= mMinPinValue && pinValue <= mMaxPinValue;
 }
