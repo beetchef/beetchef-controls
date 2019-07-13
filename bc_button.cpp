@@ -22,7 +22,7 @@ bool BcButton::update(void) {
     mLastDebounceTime = millis();
   }
 
-  if((millis() - mLastDebounceTime) > debounceDelay) {
+  if((millis() - mLastDebounceTime) > mDebounceDelay) {
     // whatever the reading is at, it's been there for longer
     // than the debounce delay, so take it as the actual current state:
     updateButtonState(reading);
@@ -34,14 +34,43 @@ bool BcButton::update(void) {
   return mNewPressOccured;
 }
 
-void BcButton::updateButtonState(bool updatedState) {
-  if(updatedState != mCurrentPinState) { 
+void BcButton::updateButtonState(bool updatedPinState) {
+  if(mPressCounter == 1 && millis() - mReleaseTimePoint > mDoublePressGap) {
+    // too much time has passed since last button press -> double press won't be generated -> reset counter
+    mPressCounter = 0;
+  }
+  if(updatedPinState != mCurrentPinState) {
     // button state changed
-    mCurrentPinState = updatedState;
-    
-    if(updatedState == HIGH) {
+    mCurrentPinState = updatedPinState;
+    if(updatedPinState == HIGH) {
       // button pressed
+      if(mPressCounter == 0) {
+        mPressTimePoint = millis();
+      }
+      if(mPressCounter == 1) {
+        // double press
+        mNewPressOccured = true;
+        mEvent = DOUBLE_PRESS;
+        mPressCounter = 0;
+      }
+    } else {
+      //button released
+      if(mPressCounter == 0 & mPressTimePoint != -1 & millis() - mPressTimePoint < mLongPressSpan) {
+        //single press
+        mNewPressOccured = true;
+        mEvent = SINGLE_PRESS;
+        mPressCounter++;
+        mPressTimePoint = -1;
+        mReleaseTimePoint = millis();
+      }
+    }
+  } else {
+    //button state remains
+    if(updatedPinState == HIGH & mPressTimePoint != -1 & millis() - mPressTimePoint >= mLongPressSpan) {
+      //button is pressed long enough to generate long press event
       mNewPressOccured = true;
+      mEvent = LONG_PRESS;
+      mPressTimePoint = -1;
     }
   }
 }
