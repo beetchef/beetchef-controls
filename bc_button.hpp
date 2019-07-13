@@ -8,13 +8,11 @@ class BcButton {
     bool update(void);
     bool getCurrentPinState();
   private:
-    unsigned long lastDebounceTime;
+    unsigned long mLastDebounceTime;
     static const uint8_t debounceDelay = 10;
-    uint8_t pin;
- /*   uint8_t valueLowerBound;
-    uint8_t valueUpperBound;*/
-    bool currentPinState;
-    bool lastPinState;
-    bool newPressOccured;
+    uint8_t mPin;
+    bool mCurrentPinState;
+    bool mLastPinState;
+    bool mNewPressOccured;
     void updateButtonState(bool updatedState);
 };
