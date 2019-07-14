@@ -1,3 +1,6 @@
+#ifndef SWITCHBOXES_HPP
+#define SWITCHBOXES_HPP
+
 #define SINGLE_PRESS "sp"
 #define DOUBLE_PRESS "dp"
 #define LONG_PRESS "lp"
@@ -44,3 +47,5 @@ class AnalogSwitchBox: public SwitchBox {
     int mMaxPinValue;
     bool readSwitchState();
 };
+
+#endif
