@@ -171,7 +171,7 @@ SwitchBox<SWITCH_TYPE>::SwitchBox(SWITCH_TYPE **switches, uint8_t switchCount, T
 template<class SWITCH_TYPE>
 void SwitchBox<SWITCH_TYPE>::update() {
 
-  // update raw switch states (without debouncing)
+  // update raw switch states (not necessarily debounced states)
   updateRawSwitchStates();
 
   // iterate over all switches
