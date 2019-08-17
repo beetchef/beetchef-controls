@@ -47,7 +47,7 @@ void Switch::updateInternalStates(TimingConfig *timingConfig) {
         mPressTimePoint = millis();
       }
 
-      // if it's second swith press
+      // if it's second switch press
       if(mPressCounter == 1) {
 
         // generate double press event
