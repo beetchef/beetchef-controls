@@ -61,7 +61,7 @@ void Switch::updateInternalStates(TimingConfig *timingConfig) {
     // if switch has been released
     } else {
 
-      // if it's was the first switch press
+      // if it was the first switch press
       if(mPressCounter == 0 && mPressTimePoint != -1 && millis() - mPressTimePoint < timingConfig->longPressSpan) {
 
         // generate single press event
