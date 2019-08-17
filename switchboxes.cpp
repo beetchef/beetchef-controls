@@ -180,8 +180,12 @@ void SwitchBox<SWITCH_TYPE>::update() {
     // if raw state for given switch is debounced (i.e. noise is eliminated)
     if (mSwitches[i]->isRawStateDebounced(mTimingConfig)) {
 
-      // update internal states for given switch with current raw state
+      // update internal states for given switch
       mSwitches[i]->updateInternalStates(mTimingConfig);
+
+      // NOTE: Execution of this doesn't mean that debounced state has changed since the last update.
+      // Updating internal states is necessary when debounce state hasn't changed as well.
+      // e.g. counting elapsed time for long press
     }
   }
 }
