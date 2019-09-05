@@ -67,13 +67,19 @@ class AnalogSwitch: public Switch {
     uint8_t minputPinValueBoundPairCount;
 };
 
+struct AbstractSwitchBox {
+  virtual void update() = 0;
+  virtual uint8_t getSwitchCount() = 0;
+  virtual Switch *getSwitch(uint8_t switchIdx);
+};
+
 template<class SWITCH_TYPE>
-class SwitchBox {
+class SwitchBox: public AbstractSwitchBox {
   public:
     SwitchBox(SWITCH_TYPE **switches, uint8_t switchCount, TimingConfig *timingConfig);
     void update();
     uint8_t getSwitchCount();
-    SWITCH_TYPE **getSwitches();
+    Switch *getSwitch(uint8_t switchIdx);
   protected:
     SWITCH_TYPE **mSwitches;
     uint8_t mSwitchCount;

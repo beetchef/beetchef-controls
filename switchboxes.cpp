@@ -196,8 +196,8 @@ uint8_t SwitchBox<SWITCH_TYPE>::getSwitchCount() {
 }
 
 template<class SWITCH_TYPE>
-SWITCH_TYPE **SwitchBox<SWITCH_TYPE>::getSwitches() {
-  return mSwitches;
+Switch *SwitchBox<SWITCH_TYPE>::getSwitch(uint8_t switchIdx) {
+  return mSwitches[switchIdx];
 }
 
 
@@ -206,7 +206,7 @@ SWITCH_TYPE **SwitchBox<SWITCH_TYPE>::getSwitches() {
  **********************/
 
 DigitalSwitchBox::DigitalSwitchBox(DigitalSwitch **switches, uint8_t switchCount, TimingConfig *timingConfig): SwitchBox(switches, switchCount, timingConfig) {
-  for (uint8_t i; i < switchCount; i++) {
+  for (uint8_t i = 0; i < switchCount; i++) {
     pinMode(switches[i]->getInputPin(), INPUT_PULLUP);
   }
 }
@@ -214,10 +214,12 @@ DigitalSwitchBox::DigitalSwitchBox(DigitalSwitch **switches, uint8_t switchCount
 void DigitalSwitchBox::updateRawSwitchStates() {
 
   // iterate over all switches
-  for (uint8_t i; i < mSwitchCount; i++) {
+  for (uint8_t i = 0; i < mSwitchCount; i++) {
 
     // read value from digital pin for given switch and update raw state using it
     mSwitches[i]->updateRawState(digitalRead(mSwitches[i]->getInputPin()));
+    // comment out the line above and uncomment the line below if physical switch is producing reversed values (i.e. 0 instead of 1 and vice versa)
+    //mSwitches[i]->updateRawState(!digitalRead(mSwitches[i]->getInputPin()));
   }
 }
 
