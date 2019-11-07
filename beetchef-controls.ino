@@ -67,8 +67,10 @@ void setup() {
 
       // TEMP: create 2 analog switches and store their pointers as first 2 elements of switches array
       // TODO: initialize just given switch from external build config using switchIdx
-      switches[0] = new AnalogSwitch(new int*[2]{ new int[2]{0, 100}, new int[2]{200, 300}}, 2);
-      switches[1] = new AnalogSwitch(new int*[2]{ new int[2]{0, 100}, new int[2]{300, 400}}, 2);
+      //switches[0] = new AnalogSwitch(new int*[2]{ new int[2]{0, 100}, new int[2]{200, 300}}, 2);
+      //switches[1] = new AnalogSwitch(new int*[2]{ new int[2]{0, 100}, new int[2]{300, 400}}, 2);
+      switches[0] = new AnalogSwitch(new int*[2]{ new int[2]{200, 300}, new int[2]{400, 500}}, 2);
+      switches[1] = new AnalogSwitch(new int*[2]{ new int[2]{300, 400}, new int[2]{400, 500}}, 2);
     //}
 
     // create new analog switch box and store it to array of switch boxes at given index
