@@ -1,0 +1,3 @@
+# KiCad tmp files
+/design/*/*-cache.lib
+/design/*/*.sch-bak
