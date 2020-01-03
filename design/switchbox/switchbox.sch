@@ -60,7 +60,7 @@ U 1 1 5DEE3BBA
 P 3300 1800
 F 0 "SW2" H 3300 2085 50  0000 C CNN
 F 1 "SW_Push" H 3300 1994 50  0000 C CNN
-F 2 "Connector_Wire:SolderWirePad_1x02_P3.81mm_Drill1mm" H 3300 2000 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3300 2000 50  0001 C CNN
 F 3 "~" H 3300 2000 50  0001 C CNN
 	1    3300 1800
 	1    0    0    -1  
@@ -104,7 +104,7 @@ U 1 1 5DEDADC4
 P 2400 2350
 F 0 "SW1" H 2400 2635 50  0000 C CNN
 F 1 "SW_Push" H 2400 2544 50  0000 C CNN
-F 2 "Connector_Wire:SolderWirePad_1x02_P3.81mm_Drill1mm" H 2400 2550 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2400 2550 50  0001 C CNN
 F 3 "~" H 2400 2550 50  0001 C CNN
 	1    2400 2350
 	1    0    0    -1  
@@ -158,7 +158,7 @@ U 1 1 5DEEBFC9
 P 2050 2600
 F 0 "J1" H 2130 2642 50  0000 L CNN
 F 1 "A0" H 2130 2551 50  0000 L CNN
-F 2 "Connector_Wire:SolderWirePad_1x01_Drill1mm" H 2050 2600 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 2050 2600 50  0001 C CNN
 F 3 "~" H 2050 2600 50  0001 C CNN
 	1    2050 2600
 	1    0    0    -1  
@@ -172,7 +172,7 @@ U 1 1 5DEEE014
 P 3400 2600
 F 0 "J2" H 3550 2550 50  0000 C CNN
 F 1 "GND" H 3550 2650 50  0000 C CNN
-F 2 "Connector_Wire:SolderWirePad_1x01_Drill1mm" H 3400 2600 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 3400 2600 50  0001 C CNN
 F 3 "~" H 3400 2600 50  0001 C CNN
 	1    3400 2600
 	-1   0    0    1   
