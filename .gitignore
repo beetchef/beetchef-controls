@@ -1,6 +1,6 @@
 # KiCad tmp files
 /design/*/fp-info-cache
-/design/*/_autosave-*.sch
+/design/*/_autosave-*.*
 /design/*/*-cache.lib
 /design/*/*.sch-bak
 /design/*/*.kicad_pcb-bak
