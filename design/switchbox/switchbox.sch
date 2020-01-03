@@ -14,10 +14,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Device:R R1
+L Device:R R3
 U 1 1 5DED73BC
 P 2150 1800
-F 0 "R1" V 2050 1800 50  0000 C CNN
+F 0 "R3" V 2050 1800 50  0000 C CNN
 F 1 "10K" V 2150 1800 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2080 1800 50  0001 C CNN
 F 3 "~" H 2150 1800 50  0001 C CNN
@@ -36,10 +36,10 @@ F 3 "~" H 2650 1800 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R3
+L Device:R R1
 U 1 1 5DED8BE7
 P 3300 2350
-F 0 "R3" V 3200 2350 50  0000 C CNN
+F 0 "R1" V 3200 2350 50  0000 C CNN
 F 1 "10K" V 3300 2350 50  0000 C CNN
 F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3230 2350 50  0001 C CNN
 F 3 "~" H 3300 2350 50  0001 C CNN
@@ -54,17 +54,6 @@ Wire Wire Line
 	1850 1800 1850 2350
 Wire Wire Line
 	1850 2350 2200 2350
-$Comp
-L Switch:SW_Push SW2
-U 1 1 5DEE3BBA
-P 3300 1800
-F 0 "SW2" H 3300 2085 50  0000 C CNN
-F 1 "SW_Push" H 3300 1994 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3300 2000 50  0001 C CNN
-F 3 "~" H 3300 2000 50  0001 C CNN
-	1    3300 1800
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2800 1800 2950 1800
 Wire Wire Line
@@ -98,17 +87,6 @@ Connection ~ 3600 2350
 Wire Wire Line
 	1850 2950 1850 2850
 Connection ~ 1850 2350
-$Comp
-L Switch:SW_Push SW1
-U 1 1 5DEDADC4
-P 2400 2350
-F 0 "SW1" H 2400 2635 50  0000 C CNN
-F 1 "SW_Push" H 2400 2544 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2400 2550 50  0001 C CNN
-F 3 "~" H 2400 2550 50  0001 C CNN
-	1    2400 2350
-	1    0    0    -1  
-$EndComp
 $Comp
 L power:+5V #PWR01
 U 1 1 5DEE8C0A
@@ -158,7 +136,7 @@ U 1 1 5DEEBFC9
 P 2050 2600
 F 0 "J1" H 2130 2642 50  0000 L CNN
 F 1 "A0" H 2130 2551 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 2050 2600 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2050 2600 50  0001 C CNN
 F 3 "~" H 2050 2600 50  0001 C CNN
 	1    2050 2600
 	1    0    0    -1  
@@ -172,7 +150,7 @@ U 1 1 5DEEE014
 P 3400 2600
 F 0 "J2" H 3550 2550 50  0000 C CNN
 F 1 "GND" H 3550 2650 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Horizontal" H 3400 2600 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 3400 2600 50  0001 C CNN
 F 3 "~" H 3400 2600 50  0001 C CNN
 	1    3400 2600
 	-1   0    0    1   
@@ -182,4 +160,26 @@ Wire Wire Line
 Connection ~ 3600 2600
 Wire Wire Line
 	3600 2600 3600 2350
+$Comp
+L Switch:SW_Push SW1
+U 1 1 5DEE3BBA
+P 3300 1800
+F 0 "SW1" H 3300 2085 50  0000 C CNN
+F 1 "SW1" H 3300 1994 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 3300 2000 50  0001 C CNN
+F 3 "~" H 3300 2000 50  0001 C CNN
+	1    3300 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW2
+U 1 1 5DEDADC4
+P 2400 2350
+F 0 "SW2" H 2400 2635 50  0000 C CNN
+F 1 "SW2" H 2400 2544 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2400 2550 50  0001 C CNN
+F 3 "~" H 2400 2550 50  0001 C CNN
+	1    2400 2350
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
