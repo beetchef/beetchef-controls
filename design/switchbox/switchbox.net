@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/carrotti/01_dev/beetchef/beetchef-controls/design/switchbox/switchbox.sch)
-    (date "Fri 03 Jan 2020 08:50:36 PM CET")
+    (date "Mon 06 Jan 2020 07:04:44 PM CET")
     (tool "Eeschema 5.1.5+dfsg1-2~bpo10+1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -37,7 +37,7 @@
       (sheetpath (names /) (tstamps /))
       (tstamp 5DED8BE7))
     (comp (ref J1)
-      (value A0)
+      (value +5V)
       (footprint Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical)
       (datasheet ~)
       (libsource (lib Connector_Generic) (part Conn_01x01) (description "Generic connector, single row, 01x01, script generated (kicad-library-utils/schlib/autogen/connector/)"))
